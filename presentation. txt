@@ -1,0 +1,49 @@
+Question #2: Array Deduping
+Write an algorithm that removes duplicates from an array. Do not use a function like filter() to solve this. Once you have solved the problem, demonstrate how it can be solved with filter(). Solve the problem with and without recursion.
+
+Example
+Input: [7, 9, "hi", 12, "hi" 7, 53]
+
+Output: [7, 9, "hi", 12, 53]
+
+
+
+1. remove duplicates from array
+2. can use built in methods
+
+
+take an array and recognize the duplicates  - remove and return new array
+
+
+without recursion and filter method:
+const input = [7, 9, "hi", 12, "hi", 7, 53];
+let newArray = [...new Set(input)];
+
+console.log(newArray); 
+
+
+using filter method():
+function filterMethod(input){
+let newArray = input.filter((element, index) => {
+   return input.indexOf(element) == index;
+});
+return newArray;
+}
+
+let input = [7, 9, "hi", 12, "hi", 7, 53];
+
+
+recursion:
+
+const array = [7, 9, "hi", 12, "hi", 7, 53];
+const filterArray = (array) => {
+  if (array.length === 0) {
+    return array.concat([]);
+  }
+  const newArray = array.slice(0, -1);
+  if (newArray.includes(array[array.length-1])) {
+    return filterArray(newArray)
+  } else {
+    return filterArray(newArray).concat(array[array.length-1])
+  }
+}
